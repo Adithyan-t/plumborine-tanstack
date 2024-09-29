@@ -26,9 +26,9 @@ const Dashboard: React.FC = () => {
       <Sidebar />
 
       {/* Left Section */}
-      <div className="w-1/3 p-5 border border-lightblue bg-primary">
-        <div className="h-[103px] border-b-2 flex items-center border-lightblue">
-          <h2 className="text-lg font-bold bg-lightblue w-fit rounded-[8px] p-2 font-grotesk">
+      <div className="w-1/3 p-5 border border-[#2a5485] bg-[#011752]">
+        <div className="h-[103px] border-b-2 flex items-center border-[#2a5485]">
+          <h2 className="text-lg font-bold bg-[#2a5485] w-fit rounded-[8px] p-2 font-grotesk">
             New Item
           </h2>
         </div>
@@ -36,7 +36,7 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Right Section */}
-      <div className="w-2/3 bg-primary">
+      <div className="w-2/3 bg-[#011752]">
         <RightContent />
       </div>
     </div>
