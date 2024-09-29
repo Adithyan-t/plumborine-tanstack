@@ -66,7 +66,6 @@ const RightContent: React.FC<RightContentProps> = ({ setHeading }) => {
 const Dashboard: React.FC = () => {
   const [heading, setHeading] = useState<string>('');
 
-
   return (
     <div className="flex flex-grow h-screen text-white bg-blue-800">
       <Sidebar />
@@ -84,7 +83,7 @@ const Dashboard: React.FC = () => {
       {/* Right Section */}
       <div className="w-2/3 bg-[#011752]">
         {/* <h1>{heading}</h1> */}
-        <Layout heading={heading}  >
+        <Layout heading={heading}>
           <RightContent setHeading={setHeading} />
         </Layout>
       </div>
