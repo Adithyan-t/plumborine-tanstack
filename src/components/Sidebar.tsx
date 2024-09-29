@@ -4,9 +4,9 @@ import { Link } from '@tanstack/react-router';
 
 const Sidebar = () => {
   return (
-    <div className="w-1/4 h-screen p-5 text-white bg-blue-900 border bg-primary border-lightblue">
-      <div className=" h-[103px] border-b-2 items-center flex border-lightblue">
-        <h2 className="text-lg font-bold bg-lightblue w-fit  rounded-[8px]  p-2 font-grotesk ">
+    <div className="w-1/4 h-screen p-5 text-white bg-[#011752] border bg-primary border-[#2a5485]">
+      <div className=" h-[103px] border-b-2 items-center flex border-[#2a5485]">
+        <h2 className="text-lg font-bold bg-[#2a5485] w-fit  rounded-[8px]  p-2 font-grotesk ">
           CMS
         </h2>
       </div>
@@ -15,7 +15,7 @@ const Sidebar = () => {
         <ul className="mt-2 ms-5">
           <Link
             to="/Admin/Dashboard/Home"
-            className="flex justify-between gap-5 px-2 py-2 text-lg hover:bg-lightblue rounded-xl"
+            className="flex justify-between gap-5 px-2 py-2 text-lg hover:bg-[#2a5485] rounded-xl"
           >
             <div className="flex items-center justify-center gap-5">
               <img src={layer} alt="" className="w-[18px] h-[18px]" />
@@ -26,7 +26,7 @@ const Sidebar = () => {
           </Link>
           <Link
             to="/Admin/Dashboard/About"
-            className="flex justify-between gap-5 px-2 py-2 text-lg hover:bg-lightblue rounded-xl"
+            className="flex justify-between gap-5 px-2 py-2 text-lg hover:bg-[#2a5485] rounded-xl"
           >
             <div className="flex items-center justify-center gap-5">
               <img src={layer} alt="" className="w-[18px] h-[18px]" />
@@ -37,7 +37,7 @@ const Sidebar = () => {
           </Link>
           <Link
             to="/Admin/Dashboard/Services"
-            className="flex justify-between gap-5 px-2 py-2 text-lg hover:bg-lightblue rounded-xl"
+            className="flex justify-between gap-5 px-2 py-2 text-lg hover:bg-[#2a5485] rounded-xl"
           >
             <div className="flex items-center justify-center gap-5">
               <img src={layer} alt="" className="w-[18px] h-[18px]" />
@@ -46,7 +46,10 @@ const Sidebar = () => {
 
             <span>9</span>
           </Link>{' '}
-          <Link to='/Admin/Dashboard/Contacts' className="flex justify-between gap-5 px-2 py-2 text-lg hover:bg-lightblue rounded-xl">
+          <Link
+            to="/Admin/Dashboard/Contacts"
+            className="flex justify-between gap-5 px-2 py-2 text-lg hover:bg-[#2a5485] rounded-xl"
+          >
             <div className="flex items-center justify-center gap-5">
               <img src={layer} alt="" className="w-[18px] h-[18px]" />
               <p>Contacts</p>
@@ -54,7 +57,10 @@ const Sidebar = () => {
 
             <span>9</span>
           </Link>
-          <Link to='/Admin/Dashboard/GetanEstimate' className="flex justify-between gap-5 px-2 py-2 text-lg hover:bg-lightblue rounded-xl">
+          <Link
+            to="/Admin/Dashboard/GetanEstimate"
+            className="flex justify-between gap-5 px-2 py-2 text-lg hover:bg-[#2a5485] rounded-xl"
+          >
             <div className="flex items-center justify-center gap-5">
               <img src={layer} alt="" className="w-[18px] h-[18px]" />
               <p>Get an Estimate</p>
