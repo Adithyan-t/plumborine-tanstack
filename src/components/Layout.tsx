@@ -1,17 +1,20 @@
 import React from 'react';
 import { RxCross1 } from 'react-icons/rx';
 import { BsThreeDots } from 'react-icons/bs';
+import { useSelector, useDispatch } from 'react-redux';
+import { setHidden } from '../store/Visible_Slice'; // Ensure this path is correct
 
 interface LayoutProps {
   children: React.ReactNode;
   heading: string;
-  isVisible: boolean;
-  setVisible: (visible: boolean) => void;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, heading, isVisible, setVisible }) => {
+const Layout: React.FC<LayoutProps> = ({ children, heading }) => {
+  const dispatch = useDispatch();
+  const isVisible = useSelector(state => state.visible.isVisible);
+
   const handleClose = () => {
-    setVisible(false);
+    dispatch(setHidden()); // Update visibility state
   };
 
   return (

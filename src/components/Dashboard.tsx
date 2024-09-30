@@ -38,6 +38,7 @@ const Dashboard: React.FC = () => {
   const [isVisible, setVisible] = useState<boolean>(false);
   const location = useLocation();
 
+
   useEffect(() => {
     const currentContent = contentMap[location.pathname] || { component: null, heading: '' };
     setHeading(currentContent.heading);
