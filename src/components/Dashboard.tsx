@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from '@tanstack/react-router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from './Sidebar';
+import Layout from './Layout';
 import Welcome from './Home/Welcome';
 import About_plumborine360 from './Home/About_plumborine360';
 import Variety_services from './Home/Variety_services';
@@ -9,62 +10,39 @@ import Services from './Home/Services';
 import Stripe from './Home/Stripe';
 import Partners from './Home/Partners';
 import Footer from './Home/Footer';
-import Layout from './Layout';
 
-interface RightContentProps {
-  setHeading: (heading: string) => void;
+interface Content {
+  component: JSX.Element | null;
+  heading: string;
 }
 
-const RightContent: React.FC<RightContentProps> = ({ setHeading }) => {
-  const location = useLocation();
-
-  let content;
-
-  switch (location.pathname) {
-    case '/Admin/Dashboard/Home/WelcomeForm':
-      content = <Welcome />;
-      setHeading('Home Items');
-      break;
-    case '/Admin/Dashboard/Home/Aboutplumborine360':
-      content = <About_plumborine360 />;
-      setHeading('Home Items');
-      break;
-    case '/Admin/Dashboard/Home/Variety_services':
-      content = <Variety_services />;
-      setHeading('Home Items');
-      break;
-    case '/Admin/Dashboard/Home/Why_Choose_us':
-      content = <Why_Choose_us />;
-      setHeading('Home Items');
-      break;
-    case '/Admin/Dashboard/Home/Services':
-      content = <Services />;
-      setHeading('Home Items');
-      break;
-    case '/Admin/Dashboard/Home/Stripe':
-      content = <Stripe />;
-      setHeading('Home Items');
-      break;
-    case '/Admin/Dashboard/Home/OurPartners':
-      content = <Partners />;
-      setHeading('Home Items');
-      break;
-    case '/Admin/Dashboard/Home/Footer_With_CTA':
-      content = <Footer />;
-      setHeading('Home Items');
-      break;
-    default:
-      content = null;
-      setHeading('');
-
-      break;
-  }
-
-  return <>{content}</>;
+const contentMap: Record<string, Content> = {
+  '/Admin/Dashboard/Home/WelcomeForm': { component: <Welcome />, heading: 'Home Items' },
+  '/Admin/Dashboard/Home/Aboutplumborine360': {
+    component: <About_plumborine360 />,
+    heading: 'Home Items',
+  },
+  '/Admin/Dashboard/Home/Variety_services': {
+    component: <Variety_services />,
+    heading: 'Home Items',
+  },
+  '/Admin/Dashboard/Home/Why_Choose_us': { component: <Why_Choose_us />, heading: 'Home Items' },
+  '/Admin/Dashboard/Home/Services': { component: <Services />, heading: 'Home Items' },
+  '/Admin/Dashboard/Home/Stripe': { component: <Stripe />, heading: 'Home Items' },
+  '/Admin/Dashboard/Home/OurPartners': { component: <Partners />, heading: 'Home Items' },
+  '/Admin/Dashboard/Home/Footer_With_CTA': { component: <Footer />, heading: 'Home Items' },
 };
 
 const Dashboard: React.FC = () => {
   const [heading, setHeading] = useState<string>('');
+  const [isVisible, setVisible] = useState<boolean>(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const currentContent = contentMap[location.pathname] || { component: null, heading: '' };
+    setHeading(currentContent.heading);
+    setVisible(true);
+  }, [location.pathname]);
 
   return (
     <div className="flex flex-grow min-h-screen text-white bg-blue-800">
@@ -82,9 +60,8 @@ const Dashboard: React.FC = () => {
 
       {/* Right Section */}
       <div className="w-2/3 bg-[#011752]">
-        {/* <h1>{heading}</h1> */}
-        <Layout heading={heading}>
-          <RightContent setHeading={setHeading} />
+        <Layout heading={heading} isVisible={isVisible} setVisible={setVisible}>
+          {contentMap[location.pathname]?.component || null}
         </Layout>
       </div>
     </div>
