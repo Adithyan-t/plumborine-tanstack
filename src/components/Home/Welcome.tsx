@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Form, Input, Button, DatePicker, Upload } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import moment from 'moment';
 
 const Welcome = () => {
@@ -8,25 +8,27 @@ const Welcome = () => {
 
   useEffect(() => {
     form.setFieldsValue({
-      title: "Welcome To Plomberie 360 - Your Trusted Plumbing Partner.",
-      cta: "Contact Sales",
-      date: moment("2024-11-06"),
-      content: "At Plomberie 360, we redefine excellence in plumbing services. From leaky faucets to complex installations, our expert team is dedicated to delivering top-notch solutions tailored to your needs."
+      title: 'Welcome To Plomberie 360 - Your Trusted Plumbing Partner.',
+      cta: 'Contact Sales',
+      date: moment('2024-11-06'),
+      content:
+        'At Plomberie 360, we redefine excellence in plumbing services. From leaky faucets to complex installations, our expert team is dedicated to delivering top-notch solutions tailored to your needs.',
     });
   }, [form]);
 
-  const onFinish = (values) => {
+  const onFinish = values => {
     console.log('Form values:', values);
+  };
+  const normFile = (e: any) => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e?.fileList;
   };
 
   return (
-    <div className="bg-blue-900 min-w-full rounded-lg max-w-md mx-auto">
-      <Form
-        form={form}
-        name="plumberie_form"
-        onFinish={onFinish}
-        layout="vertical"
-      >
+    <div className="max-w-md min-w-full mx-auto bg-blue-900 rounded-lg">
+      <Form form={form} name="plumberie_form" onFinish={onFinish} layout="vertical">
         <Form.Item
           name="title"
           label={<span className="text-white">Title</span>}
@@ -50,21 +52,20 @@ const Welcome = () => {
         >
           <DatePicker className="text-white border-none h-[71px] bg-[#2A5486]  font-grotesk text-[24px] font-bold border-blue-700 hover:bg-[#2A5486]" />
         </Form.Item>
-
-        <Form.Item
-          name="cover"
-          label={<span className="text-white">Cover</span>}
-        >
-          <Upload
-            listType="picture"
-            maxCount={1}
-            beforeUpload={() => false}
-          >
-            <Button icon={<UploadOutlined />} className="bg-blue-800 text-white border-blue-700">
-              Upload Cover Image
-            </Button>
-          </Upload>
-        </Form.Item>
+        <div className="text-white border-none h-fit bg-[#2A5486]  font-grotesk text-[24px] font-bold border-blue-700 hover:bg-[#2A5486]">
+          <Form.Item valuePropName="fileList" getValueFromEvent={normFile} className="p-3">
+            <Upload
+              action="/upload.do"
+              listType="picture-card"
+              maxCount={1} // This limits the upload to one image
+            >
+              <button style={{ border: 0, background: 'none' }} type="button">
+                <PlusOutlined />
+                <div style={{ marginTop: 8 }}>Upload</div>
+              </button>
+            </Upload>
+          </Form.Item>
+        </div>
 
         <Form.Item
           name="content"
@@ -72,7 +73,7 @@ const Welcome = () => {
           rules={[{ required: true, message: 'Please input your content!' }]}
         >
           <Input.TextArea
-            className="bg-blue-800  border-blue-700"
+            className="text-white border-none h-[71px] bg-[#2A5486]  font-grotesk text-[24px] font-bold border-blue-700 hover:bg-[#2A5486]"
             rows={4}
           />
         </Form.Item>
