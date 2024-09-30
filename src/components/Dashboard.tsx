@@ -67,7 +67,7 @@ const Dashboard: React.FC = () => {
   const [heading, setHeading] = useState<string>('');
 
   return (
-    <div className="flex flex-grow h-screen text-white bg-blue-800">
+    <div className="flex flex-grow min-h-screen text-white bg-blue-800">
       <Sidebar />
 
       {/* Left Section */}

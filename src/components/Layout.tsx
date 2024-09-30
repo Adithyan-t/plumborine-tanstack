@@ -13,13 +13,13 @@ const Layout = ({ children, heading }) => {
   };
 
   return (
-    <div className="p-5 border border-[#2a5485] bg-[#011752] h-screen">
+    <div className="p-5 border-t border-[#2a5485] bg-[#011752] h-screen">
       <div className="h-[103px] border-b-2 flex items-center border-[#2a5485] justify-between">
         <div className="flex">
-          <button className="text-2xl" onClick={handleClose}>
+          <button className="text-2xl " onClick={handleClose}>
             <RxCross1 />
           </button>
-          <h2 className="text-lg font-bold w-fit rounded-[8px] p-2 font-grotesk">{heading}</h2>
+          <h2 className="text-2xl leading-[30.62px] font-bold w-fit rounded-[8px] p-2 font-grotesk">{heading}</h2>
         </div>
 
         <div className="flex gap-3">
