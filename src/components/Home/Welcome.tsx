@@ -1,10 +1,18 @@
 import React, { useEffect } from 'react';
 import { Form, Input, Button, DatePicker, Upload } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 
-const Welcome = () => {
-  const [form] = Form.useForm();
+interface FormValues {
+  title: string;
+  cta: string;
+  date: Moment | null;
+  content: string;
+  fileList?: any[];
+}
+
+const Welcome: React.FC = () => {
+  const [form] = Form.useForm<FormValues>();
 
   useEffect(() => {
     form.setFieldsValue({
@@ -16,9 +24,10 @@ const Welcome = () => {
     });
   }, [form]);
 
-  const onFinish = values => {
+  const onFinish = (values: FormValues) => {
     console.log('Form values:', values);
   };
+
   const normFile = (e: any) => {
     if (Array.isArray(e)) {
       return e;
@@ -34,7 +43,7 @@ const Welcome = () => {
           label={<span className="text-white">Title</span>}
           rules={[{ required: true, message: 'Please input your title!' }]}
         >
-          <Input className="  text-white border-none h-[71px] bg-[#2A5486]  font-grotesk text-[24px] font-bold border-blue-700 hover:bg-[#2A5486]" />
+          <Input className="text-white border-none h-[71px] bg-[#2A5486] font-grotesk text-[24px] font-bold border-blue-700 hover:bg-[#2A5486]" />
         </Form.Item>
 
         <Form.Item
@@ -42,7 +51,7 @@ const Welcome = () => {
           label={<span className="text-white">CTA</span>}
           rules={[{ required: true, message: 'Please input your CTA!' }]}
         >
-          <Input className="text-white border-none h-[71px] bg-[#2A5486]  font-grotesk text-[24px] font-bold border-blue-700 hover:bg-[#2A5486]" />
+          <Input className="text-white border-none h-[71px] bg-[#2A5486] font-grotesk text-[24px] font-bold border-blue-700 hover:bg-[#2A5486]" />
         </Form.Item>
 
         <Form.Item
@@ -50,16 +59,17 @@ const Welcome = () => {
           label={<span className="text-white">Date</span>}
           rules={[{ required: true, message: 'Please select a date!' }]}
         >
-          <DatePicker className="text-white border-none h-[71px] bg-[#2A5486]  font-grotesk text-[24px] font-bold border-blue-700 hover:bg-[#2A5486]" />
+          <DatePicker className="text-white border-none  h-[71px] bg-[#2A5486] font-grotesk text-[24px] font-bold border-blue-700 hover:bg-[#2A5486]" />
         </Form.Item>
-        <div className="text-white border-none h-fit bg-[#2A5486]  font-grotesk text-[24px] font-bold border-blue-700 hover:bg-[#2A5486]">
+
+        <div className="text-white border-none h-fit bg-[#2A5486] font-grotesk text-[24px] font-bold border-blue-700 hover:bg-[#2A5486]">
           <Form.Item valuePropName="fileList" getValueFromEvent={normFile} className="p-3">
-            <Upload
-              action="/upload.do"
-              listType="picture-card"
-              maxCount={1} // This limits the upload to one image
-            >
-              <button style={{ border: 0, background: 'none' }} type="button">
+            <Upload action="/upload.do" listType="picture-card" maxCount={1}>
+              <button
+                style={{ border: 0, background: 'none' }}
+                type="button"
+                className="text-white"
+              >
                 <PlusOutlined />
                 <div style={{ marginTop: 8 }}>Upload</div>
               </button>
@@ -73,7 +83,7 @@ const Welcome = () => {
           rules={[{ required: true, message: 'Please input your content!' }]}
         >
           <Input.TextArea
-            className="text-white border-none h-[71px] bg-[#2A5486]  font-grotesk text-[24px] font-bold border-blue-700 hover:bg-[#2A5486]"
+            className="text-white border-none h-[71px] bg-[#2A5486] font-grotesk text-[24px] font-bold border-blue-700 hover:bg-[#2A5486]"
             rows={4}
           />
         </Form.Item>
